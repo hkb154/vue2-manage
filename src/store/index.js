@@ -1,26 +1,11 @@
 import Vue from "vue";
 import Vuex from 'vuex';
+import navCollapse from "./navCollapse";
 
 Vue.use(Vuex);
 
-const actions = {
-
-}
-
-const mutations = {
-
-}
-
-const state = {
-
-}
-
-const getters = {
-    
-}
-
 export default new Vuex.Store({
-    actions,
-    mutations,
-    state
+    modules: {
+        navCollapse
+    }
 })
