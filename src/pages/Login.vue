@@ -70,41 +70,33 @@ export default {
     },
     methods: {
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+        this.$refs[formName].validate(async (valid) => {
           if (valid) {
             // 校验通过，执行这部分代码
             // 发起登录请求
-            LoginAPI({
+            let response = await LoginAPI({
               username: this.ruleForm.username,
               password: this.ruleForm.password,
               code: this.ruleForm.captchaCode,
               uuid: localStorage.getItem('xj-captcha-uuid')
-            }).then(
-              response => {
-                if(response.code == 200){
-                  // 提示用户登录成功
-                  this.$message({
-                    message: '登录成功',
-                    type: 'success',
-                    showClose: true,
-                    center: true
-                  })
-                  // 清除uuid
-                  localStorage.removeItem('xj-captcha-uuid')
-                  // 保存token
-                  localStorage.setItem('xj-authorization-token', response.token)
-                  // 跳转首页
-                  this.$router.push('/')
-                }else{
-                  this.$message({
-                    message: response.msg,
-                    type: 'error',
-                    showClose: true,
-                    center: true
-                  });
-                }
-              }
-            )
+            })
+
+            if(!response) return; // 在拦截器中判断response.code是否为200，不是的话response为false
+
+            // 提示用户登录成功
+            this.$message({
+              message: '登录成功',
+              type: 'success',
+              showClose: true,
+              center: true
+            })
+            // 清除uuid
+            localStorage.removeItem('xj-captcha-uuid')
+            // 保存token
+            localStorage.setItem('xj-authorization-token', response.token)
+            // 跳转首页
+            this.$router.push('/')
+
           } else {
             // 校验未通过，执行这部分代码
             this.$message({
@@ -117,29 +109,18 @@ export default {
           }
         });
       },
-      getCaptcha(){
-        GetCaptchaCodeAPI().then( // 浏览器接受响应后再执行then
-          response => {
-            // console.log('33333');
-            if(response.code == 200){
-              // 展示验证码图片
-              this.captchaSrc = 'data:image/gif;base64,' + response.img;
+      async getCaptcha(){
+        let response = await GetCaptchaCodeAPI() // 浏览器接受响应后再执行then
+        if(!response) return;
+        // console.log('33333');
+        // if(response.code == 200){
+        if(response.code == 200){
+          // 展示验证码图片
+          this.captchaSrc = 'data:image/gif;base64,' + response.img;
 
-              // 保存uuid，给登录时作为参数传递给后端
-              localStorage.setItem('xj-captcha-uuid', response.uuid)
-            }else{
-              this.$message({
-              message: response.message,
-              type: 'error',
-              showClose: true,
-              center: true
-            });
-            }
-          },
-          error => {
-            console.log(error.message);
-          }
-        )
+          // 保存uuid，给登录时作为参数传递给后端
+          localStorage.setItem('xj-captcha-uuid', response.uuid)
+        }
       }
     },
     mounted(){

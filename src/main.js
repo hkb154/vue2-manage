@@ -4,6 +4,7 @@ import 'reset-css';
 import App from './App.vue';
 import store from './store';
 import router from './router';
+import './assets/icons/index'
 
 import { Button, Form, FormItem, Input, Message, Menu, Submenu, MenuItem, MenuItemGroup } from 'element-ui';
 import VueRouter from 'vue-router';
