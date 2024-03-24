@@ -14,7 +14,18 @@
 <script>
 import 'animate.css'
 export default {
-    name: 'ContentView'
+    name: 'ContentView',
+    methods: {
+      reload() {
+        this.$forceUpdate()
+      }
+    },
+    mounted(){
+      this.$bus.$on('refresh', this.reload);
+    },
+    beforeDestroy() {
+      this.$bus.$off('refresh');
+    }
 }
 </script>
 

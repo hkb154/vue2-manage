@@ -6,7 +6,10 @@ import store from './store';
 import router from './router';
 import './assets/icons/index'
 
-import { Button, Form, FormItem, Input, Message, Menu, Submenu, MenuItem, MenuItemGroup } from 'element-ui';
+import { Button, Form, FormItem, Input, Message, 
+         Menu, Submenu, MenuItem, MenuItemGroup, Breadcrumb, 
+         BreadcrumbItem, Dropdown, DropdownMenu, DropdownItem, Tag 
+       } from 'element-ui';
 import VueRouter from 'vue-router';
 
 Vue.config.productionTip = false;
@@ -22,10 +25,19 @@ Vue.use(Menu);
 Vue.use(Submenu);
 Vue.use(MenuItem);
 Vue.use(MenuItemGroup);
+Vue.use(Breadcrumb);
+Vue.use(BreadcrumbItem);
+Vue.use(Dropdown);
+Vue.use(DropdownMenu);
+Vue.use(DropdownItem);
+Vue.use(Tag);
 
 
 new Vue({
   render: h => h(App),
   store,
-  router
+  router,
+  beforeCreate(){
+    Vue.prototype.$bus = this;
+  }
 }).$mount('#app')

@@ -1,7 +1,9 @@
 <template>
   <div class="navbar" :class="{isColl: isCollapse}">
     <h1 class="main-logo">
-      <img src="../../assets/imgs/Jlogo2.png" alt="Logo" width="32">
+      <router-link to="/home">
+        <img src="../../assets/imgs/Jlogo2.png" alt="Logo" width="32">
+      </router-link>
       <span v-show="!isCollapse">小焦后台管理系统</span>
     </h1>
     <el-menu
@@ -13,6 +15,7 @@
       background-color="#304156"
       text-color="#fff"
       active-text-color="#ffd04b"
+      :default-active="$route.path"
     >
       <div v-for="item in menuData" :key="item.path">
         <el-submenu :index="item.path" v-if="item.children">

@@ -8,3 +8,6 @@ export const LoginAPI = (params) => instance.post('/prod-api/login', params);
 
 // 获取用户可以访问的路由的API
 export const GetUserRoutersAPI = () => instance.get('/prod-api/getRouters');
+
+// 获取用户信息
+export const GetUserInfoAPI = () => instance.get('/prod-api/getInfo');

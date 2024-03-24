@@ -23,6 +23,10 @@ const router = new VueRouter({
             name: 'login',
             path: '/login',
             component: Login
+        },
+        {
+            path: '*',
+            component: () => import('../components/404.vue')
         }
     ]
 })
@@ -46,7 +50,7 @@ router.beforeEach(async(to, from, next) => {
         // console.log(GetUserRoutersAPIRes);
         if(!GetUserRoutersAPIRes) return;
 
-        let newUserMenuData = [{title: '首页', path: '/', icon: 'dashboard'}];
+        let newUserMenuData = [{title: '首页', path: '/home', icon: 'dashboard'}];
         
         let ret = GetUserRoutersAPIRes.data.map(item => {
             if(item.children){
@@ -75,17 +79,27 @@ router.beforeEach(async(to, from, next) => {
         // 以上生成菜单数据
 
         // 以下生成路由数据
-        let newChildrenRoutes = [{
-            name: 'home',
-            path: '/home',
-            component: () => import('../pages/Home.vue')
-        }];
+        let newChildrenRoutes = [
+            {
+                name: 'home',
+                path: '/home',
+                component: () => import('../pages/Home.vue'),
+                meta: {titles: ['首页']}
+            },
+            {
+                name: 'profile',
+                path: '/profile',
+                component: () => import('../pages/Profile.vue'),
+                meta: {titles: ['个人中心']}
+            }
+        ];
         GetUserRoutersAPIRes.data.forEach(item => {
             let ret = item.children.map(sitem => {
                 return {
                     name: sitem.path,
                     path: item.path + '/' + sitem.path,
-                    component: () => import(`../pages${item.path}/${sitem.name}.vue`)
+                    component: () => import(`../pages${item.path}/${sitem.name}.vue`),
+                    meta: {titles: [item.meta.title, sitem.meta.title]}
                 }
             })
             newChildrenRoutes = [...newChildrenRoutes, ...ret];

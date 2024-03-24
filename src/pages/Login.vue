@@ -26,6 +26,7 @@
 <script>
 import {validateUsername} from '../utils/validate';
 import {GetCaptchaCodeAPI, LoginAPI} from '../request/api';
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
     name: 'Login',
@@ -69,6 +70,9 @@ export default {
       }
     },
     methods: {
+      ...mapActions('userInfo', {asyncChangeUserInfo: 'asyncChangeUserInfo'}),
+      ...mapMutations('userMenuData', {ChangeMenuData: 'ChangeMenuData'}),
+
       submitForm(formName) {
         this.$refs[formName].validate(async (valid) => {
           if (valid) {
@@ -94,6 +98,9 @@ export default {
             localStorage.removeItem('xj-captcha-uuid')
             // 保存token
             localStorage.setItem('xj-authorization-token', response.token)
+
+            this.asyncChangeUserInfo()
+
             // 跳转首页
             this.$router.push('/')
 
@@ -109,6 +116,7 @@ export default {
           }
         });
       },
+
       async getCaptcha(){
         let response = await GetCaptchaCodeAPI() // 浏览器接受响应后再执行then
         if(!response) return;
@@ -121,17 +129,24 @@ export default {
           // 保存uuid，给登录时作为参数传递给后端
           localStorage.setItem('xj-captcha-uuid', response.uuid)
         }
-      }
+      },
+
     },
     mounted(){
+      // 验证码请求
       this.getCaptcha();
+
+      // 清除vuex中menuData的数据
+      // this.$store.commit('userMenuData/ChangeMenuData', [])
+      this.ChangeMenuData([]);
     }
 }
 </script>
 
 <style lang="less" scoped>
 .login-page{
-  background: url('../assets/imgs/loginback.png') no-repeat center top;
+  background: url('../assets/imgs/loginback.png') no-repeat center;
+  background-size: cover;
   width: 100%;
   height: 100%;
   position: relative;

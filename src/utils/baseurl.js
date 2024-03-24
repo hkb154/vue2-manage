@@ -1,0 +1,1 @@
+export const IMG_BASEURL = 'http://tech.wolfcode.cn:23683/prod-api'
