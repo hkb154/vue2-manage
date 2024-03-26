@@ -4,12 +4,6 @@
     <div class="layout-right" :class="{isColl: isCollapse}">
       <HeaderView></HeaderView>
       <ContentView></ContentView>
-        <!-- <div class="header-box">
-          <HeaderView></HeaderView>
-        </div> 
-        <div class="content-box">
-          <ContentView></ContentView>
-        </div> -->
     </div>
   </div>
 </template>
@@ -44,15 +38,6 @@ export default {
     transition: all 0.5s;
     &.isColl{
       max-width: calc(100vw - 64px);
-    }
-    .header-box{
-      height: 84px;
-      position: sticky;
-      top: 0px;
-      z-index: 1;
-    }
-    .content-box{
-      z-index: -1;
     }
   }
 }

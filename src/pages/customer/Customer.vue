@@ -15,7 +15,7 @@
         label="客户姓名"
         align="center"
       >
-        <template slot-scope="{row}">{{ row.name }}</template>
+        <template slot-scope="{row}">{{ (row.name) ? row.name : '不愿透露姓名' }}</template>
       </el-table-column>
       <el-table-column
         label="电话"
