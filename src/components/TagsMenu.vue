@@ -80,6 +80,7 @@ export default {
     position: absolute;
     border-radius: 8px;
     font-size: 14px;
+    z-index: 1;
     ul{
         padding: 10px 0;
         li{

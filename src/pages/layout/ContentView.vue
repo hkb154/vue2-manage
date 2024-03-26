@@ -32,5 +32,6 @@ export default {
 <style lang="less" scoped>
 .layout-content{
   padding: 20px;
+  z-index: -1;
 }
 </style>

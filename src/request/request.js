@@ -26,7 +26,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     response => {
         let res_data = response.data;
-        if(res_data.code != 200){
+        if(res_data.code && res_data.code != 200){
             Message.error({message: res_data.msg,showClose: true,center: true} || '网络请求错误');
             // 401一般为token过期或没有带
             if(res_data.code == 401){

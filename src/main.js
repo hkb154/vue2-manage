@@ -8,7 +8,8 @@ import './assets/icons/index'
 
 import { Button, Form, FormItem, Input, Message, 
          Menu, Submenu, MenuItem, MenuItemGroup, Breadcrumb, 
-         BreadcrumbItem, Dropdown, DropdownMenu, DropdownItem, Tag 
+         BreadcrumbItem, Dropdown, DropdownMenu, DropdownItem, Tag,
+         Table, TableColumn, Pagination, Upload
        } from 'element-ui';
 import VueRouter from 'vue-router';
 
@@ -31,6 +32,10 @@ Vue.use(Dropdown);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 Vue.use(Tag);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Pagination);
+Vue.use(Upload);
 
 
 new Vue({

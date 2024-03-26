@@ -12,7 +12,7 @@
         <el-dropdown @command="handleCommand">
           <div class="avatar-box">
             <!-- <img :src="IMG_BASEURL + (userInfo.user.avatar || '/profile/avatar/2022/10/10/blob_20221010200353A001.jpeg')" alt=""> -->
-            <img src="../../assets/imgs/avatar2.png" alt="您的头像">
+            <img src="../../assets/imgs/avatar2.png" alt="您的头像"> <!-- 静态 -->
             <i class="el-icon-caret-bottom"></i>
           </div>
           <el-dropdown-menu slot="dropdown">
@@ -71,6 +71,9 @@ export default {
 .header{
   height: 84px;
   box-shadow: 0px 5px 5px #eee;
+  background-color: #fff;
+  position: sticky;
+  top: 0px;
   .header-top{
     height: 50px;
     box-shadow: 0px 3px 3px #eee;

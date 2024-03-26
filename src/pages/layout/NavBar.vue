@@ -59,7 +59,7 @@ export default {
 .navbar {
   width: 220px;
   height: 100%;
-  position: relative;
+  z-index: 2;
   background-color: #304156;
   box-shadow: 5px 0 5px #ccc;
   transition: all 0.5s;
