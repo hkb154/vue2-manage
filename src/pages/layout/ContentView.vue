@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-content">
+  <div class="layout-content" :class="{hasBg: $route.path == '/home'}">
     <transition 
       name="animate__animated animate__bounce" 
       enter-active-class="animate__flipInX"
@@ -30,8 +30,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.hasBg{
+  background: url('../../assets/imgs/bg.png') no-repeat center;
+  background-size: cover;
+}
+
 .layout-content{
   padding: 20px;
+  // calc运算符两边要加空格，否则运算无效
+  height: calc(100% - 124px);
   z-index: -1;
 }
 </style>
