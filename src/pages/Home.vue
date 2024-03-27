@@ -13,7 +13,7 @@
       </div>
       <div class="box3">
         <dv-border-box-6 ref="borderBox2">
-          <ve-pie :data="chartData" :key="key" :extend="pieExtend" height="100%"></ve-pie>
+          <ve-pie :data="chartData"  :extend="pieExtend" height="100%"></ve-pie>
         </dv-border-box-6>
       </div>
       <div class="box4">
@@ -38,7 +38,7 @@
       </div>
       <div class="box8">
         <dv-border-box-9 ref="borderBox7">
-          <ve-histogram class="his" :key="key" :data="chartData2" :extend="histogramExtend" width="95%" height="95%"></ve-histogram>
+          <ve-histogram class="his" :data="chartData2" :extend="histogramExtend" width="95%" height="95%"></ve-histogram>
         </dv-border-box-9>
       </div>
       <div class="box9">
@@ -128,7 +128,6 @@ export default {
         ],
         colors: ['#e062ae', '#fb7293', '#e690d1', '#32c5e9', '#96bfff'],
       },
-
       option: {
         series: [
           {
@@ -318,7 +317,6 @@ export default {
 }
 
 .his{
-  // margin: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
