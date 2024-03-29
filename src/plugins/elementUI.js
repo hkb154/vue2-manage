@@ -3,7 +3,8 @@ import Vue from "vue";
 import { Button, Form, FormItem, Input, Message, 
     Menu, Submenu, MenuItem, MenuItemGroup, Breadcrumb, 
     BreadcrumbItem, Dropdown, DropdownMenu, DropdownItem, Tag,
-    Table, TableColumn, Pagination, Upload
+    Table, TableColumn, Pagination, Upload, Avatar,
+    Descriptions, DescriptionsItem, Switch
   } from 'element-ui';
 
   Vue.prototype.$message = Message
@@ -26,3 +27,7 @@ import { Button, Form, FormItem, Input, Message,
   Vue.use(TableColumn);
   Vue.use(Pagination);
   Vue.use(Upload);
+  Vue.use(Avatar);
+  Vue.use(Descriptions);
+  Vue.use(DescriptionsItem);
+  Vue.use(Switch);

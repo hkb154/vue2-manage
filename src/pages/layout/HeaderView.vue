@@ -58,6 +58,7 @@ export default {
         if(command === 'logout'){
           localStorage.removeItem('xj-authorization-token');
           localStorage.removeItem('xj-userInfo');
+          sessionStorage.removeItem('tags');
           this.$router.push('/login');
         } else if (command === 'profile'){
           this.$router.push('/profile')

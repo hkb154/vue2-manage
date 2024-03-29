@@ -50,6 +50,10 @@ export default {
         $route: {
             immediate: true,
             handler(value, oldValue){
+                if(sessionStorage.getItem('tags')){
+                    this.tags = JSON.parse(sessionStorage.getItem('tags'));
+                }
+                
                 // find() 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined
                 const bool = this.tags.find(item => {
                     return item.path == value.path
@@ -62,6 +66,12 @@ export default {
                         path: value.path,
                     })
                 }
+            }
+        },
+        tags: {
+            immediate: true,
+            handler(value, oldValue){
+                sessionStorage.setItem('tags', JSON.stringify(value));
             }
         }
     },

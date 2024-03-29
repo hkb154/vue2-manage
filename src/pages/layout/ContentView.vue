@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-content" :class="{hasBg: $route.path == '/home'}">
+  <div class="layout-content" :class="[{hasBg: $route.path == '/home'}, {hasBg2: $route.path.includes('/profile')}]" >
     <transition 
       name="animate__animated animate__bounce" 
       enter-active-class="animate__flipInX"
@@ -33,6 +33,10 @@ export default {
 .hasBg{
   background: url('../../assets/imgs/bg.png') no-repeat center;
   background-size: cover;
+}
+
+.hasBg2{
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);;
 }
 
 .layout-content{

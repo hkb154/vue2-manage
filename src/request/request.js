@@ -31,7 +31,8 @@ instance.interceptors.response.use(
             // 401一般为token过期或没有带
             if(res_data.code == 401){
                 localStorage.removeItem('xj-authorization-token');
-                router.push('/login')
+                sessionStorage.removeItem('tags');
+                router.push('/login');
             }
 
             // 这里return不是结束函数，实际上是把return值传递给组件中的response
