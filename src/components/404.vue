@@ -9,6 +9,7 @@
 export default {
     name: '404',
     mounted(){
+        sessionStorage.removeItem('tags');
         setTimeout(() => {
             this.$router.push('/')
         }, 3000)

@@ -3,12 +3,12 @@
     <el-tag class="tag" size="medium" :closable="index > 0" 
         v-for="(item, index) in tags"
         :key="item.path"
-        :effect="item.path === $route.path ? 'dark' : 'plain'"
+        :effect="(item.path === $route.path) || (item.path === '/profile' && $route.path.includes('/profile')) ? 'dark' : 'plain'"
         @click="goTo(item.path)"
         @close="close(index)"
         @contextmenu.native.prevent="rightClick($event, index)"
     >
-        <i class="circle" v-show="item.path === $route.path"></i>
+        <i class="circle" v-show="(item.path === $route.path) || (item.path === '/profile' && $route.path.includes('/profile'))"></i>
         {{item.title}}
     </el-tag>
     <TagsMenu
@@ -19,7 +19,6 @@
         :tagsLength="tags.length"
         @fn="clickMenu"
     >
-
     </TagsMenu>
   </div>
 </template>
@@ -58,9 +57,14 @@ export default {
                 const bool = this.tags.find(item => {
                     return item.path == value.path
                 })
-                // console.log(bool);
+
+                const bool2 = this.tags.find(item => {
+                    return (item.path.includes('/profile') && value.path.includes('/profile'))
+                })
+
+                console.log(bool);
                 // 当tags里的对象不包含目标路径时才添加
-                if(!bool){
+                if(!bool && !bool2){
                     this.tags.push({
                         title: value.meta.titles[value.meta.titles.length - 1],
                         path: value.path,

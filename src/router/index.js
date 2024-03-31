@@ -1,13 +1,6 @@
 import VueRouter from 'vue-router';
 import Login from '../pages/Login.vue'
 import MainLayout from '../pages/layout/MainLayout.vue'
-// import Home from '../pages/Home.vue'
-// import Appointment from '../pages/business/Appointment.vue'
-// import Service from '../pages/business/Service.vue'
-// import Statement from '../pages/business/Statement.vue'
-// import Customer from '../pages/customer/Customer.vue'
-// import Visit from '../pages/customer/Visit.vue'
-// import Definition from '../pages/flow/Definition.vue'
 import {GetUserRoutersAPI} from '../request/api'
 import store from '../store';
 
@@ -17,7 +10,47 @@ const router = new VueRouter({
             name: 'mainLayout',
             path: '/',
             component: MainLayout,
-            redirect: '/home'
+            redirect: '/home',
+            children: [
+                {
+                    name: 'profile',
+                    path: '/profile',
+                    component: () => import('../pages/Profile.vue'),
+                    meta: {titles: ['个人中心']},
+                    children: [
+                        {
+                            name: 'show',
+                            path: '/profile/show',
+                            component: () => import('../pages/profile/Show.vue')
+                        },
+                        {
+                            name: 'post',
+                            path: '/profile/post',
+                            component: () => import('../pages/profile/Post.vue')
+                        },
+                        {
+                            name: 'comment',
+                            path: '/profile/comment',
+                            component: () => import('../pages/profile/Comment.vue')
+                        },
+                        {
+                            name: 'star',
+                            path: '/profile/star',
+                            component: () => import('../pages/profile/Star.vue')
+                        },
+                        {
+                            name: 'star',
+                            path: '/profile/concern',
+                            component: () => import('../pages/profile/Concern.vue')
+                        },
+                        {
+                            name: 'fans',
+                            path: '/profile/fans',
+                            component: () => import('../pages/profile/Fans.vue')
+                        },
+                    ]
+                }
+            ]
         },
         {
             name: 'login',
@@ -86,12 +119,12 @@ router.beforeEach(async(to, from, next) => {
                 component: () => import('../pages/Home.vue'),
                 meta: {titles: ['首页']}
             },
-            {
-                name: 'profile',
-                path: '/profile',
-                component: () => import('../pages/Profile.vue'),
-                meta: {titles: ['个人中心']}
-            }
+            // {
+            //     name: 'profile',
+            //     path: '/profile',
+            //     component: () => import('../pages/Profile.vue'),
+            //     meta: {titles: ['个人中心']}
+            // }
         ];
         GetUserRoutersAPIRes.data.forEach(item => {
             let ret = item.children.map(sitem => {

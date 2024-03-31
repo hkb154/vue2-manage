@@ -1,7 +1,6 @@
 <template>
-  <div class="content" :class="{isShow: this.$route.path == '/profile'}">
-    <router-view></router-view>
-    <!-- <el-descriptions class="margin-top" title="个人简介" :column="2" :size="size" border>
+  <div class="show-box">
+    <el-descriptions class="margin-top" title="个人简介" :column="2" border>
         <template slot="extra">
         <el-button type="primary" size="small">操作</el-button>
         </template>
@@ -119,32 +118,35 @@
         </template>
         2023-10-14
         </el-descriptions-item>
-    </el-descriptions> -->
+    </el-descriptions>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'Content',
-    data() {
-        return {
-            sex: false,
-        }
-    },
+    name: 'Show'
 }
 </script>
 
 <style lang="less" scoped>
-.content{
-    width: 96%;
-    height: 96%;
-    position: relative;
-    top: 2%;
-    left: 2%;
+.show-box{
+    
+    .el-descriptions{
+        overflow: auto;
+        height: 500px;
+    }
 }
 
-.isShow{
-    background: url('../../assets/imgs/loginback2.png') no-repeat center;
-    background-size: cover;
+img{
+    width: 60px;
+    border-radius: 10px;
+}
+
+::v-deep th{
+    vertical-align: middle;
+}
+
+::v-deep td{
+    vertical-align: middle;
 }
 </style>
